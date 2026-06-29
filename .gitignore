@@ -1,0 +1,22 @@
+# Next.js build output — never sync or commit these
+.next/
+out/
+
+# Dependencies
+node_modules/
+
+# Environment variables — keep secrets local
+.env
+.env.local
+.env.*.local
+
+# Vercel
+.vercel
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

@@ -1,0 +1,531 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =====================================================================
+   DOMUS · Design System Tokens
+   ===================================================================== */
+:root {
+  /* Brand: Green */
+  --domus-green-50:  #E8EFEA;
+  --domus-green-100: #C9DCD1;
+  --domus-green-200: #9DBCAC;
+  --domus-green-300: #6E9C87;
+  --domus-green-500: #1E6B52;
+  --domus-green-600: #155241;
+  --domus-green-700: #0F3D2E;
+  --domus-green-900: #082018;
+
+  /* Support: Beige */
+  --domus-beige-50:  #FAF5E8;
+  --domus-beige-100: #F6F0E2;
+  --domus-beige-200: #EFE6D3;
+  --domus-beige-300: #E2D2B4;
+  --domus-beige-500: #D5C2A1;
+  --domus-beige-600: #BFA77F;
+  --domus-beige-700: #A88E5F;
+  --domus-beige-900: #6E5A36;
+
+  /* Neutrals */
+  --domus-ivory:     #FAF7F2;
+  --domus-white:     #FFFFFF;
+  --domus-paper:     #F2EEE6;
+  --domus-ink-100:   #E4DED1;
+  --domus-ink-200:   #C5CCC7;
+  --domus-ink-300:   #98A19B;
+  --domus-ink-500:   #5A6660;
+  --domus-ink-700:   #2E3A33;
+  --domus-ink-900:   #14241C;
+
+  /* Status */
+  --domus-success:    #2E7D5B;
+  --domus-success-bg: #DDEDE3;
+  --domus-warning:    #C68A2E;
+  --domus-warning-bg: #F6E9CC;
+  --domus-danger:     #B23A2A;
+  --domus-danger-bg:  #F2DAD5;
+
+  /* Semantic aliases */
+  --domus-brand:          var(--domus-green-700);
+  --domus-brand-hover:    var(--domus-green-900);
+  --domus-accent:         var(--domus-beige-500);
+  --domus-surface:        var(--domus-ivory);
+  --domus-surface-raised: var(--domus-white);
+  --domus-surface-sunken: #F2EEE6;
+  --domus-border:         var(--domus-ink-100);
+  --domus-border-strong:  var(--domus-ink-200);
+  --domus-text:           var(--domus-ink-900);
+  --domus-text-secondary: var(--domus-ink-700);
+  --domus-text-muted:     var(--domus-ink-500);
+  --domus-text-on-brand:  var(--domus-ivory);
+
+  /* Typography — variables injected by next/font in layout.tsx */
+  --domus-font-display: var(--font-unbounded), 'Helvetica Neue', sans-serif;
+  --domus-font-ui:      var(--font-dm-sans),   'Helvetica Neue', system-ui, sans-serif;
+  --domus-font-mono:    var(--font-dm-mono),   ui-monospace, monospace;
+
+  /* Radius */
+  --domus-radius-xs:   4px;
+  --domus-radius-sm:   6px;
+  --domus-radius-md:   8px;
+  --domus-radius-lg:   12px;
+  --domus-radius-pill: 999px;
+
+  /* Spacing */
+  --domus-space-1:  4px;  --domus-space-2:  8px;
+  --domus-space-3:  12px; --domus-space-4:  16px;
+  --domus-space-5:  20px; --domus-space-6:  24px;
+  --domus-space-8:  32px; --domus-space-10: 40px;
+  --domus-space-12: 48px; --domus-space-16: 64px;
+  --domus-space-20: 80px; --domus-space-24: 96px;
+
+  /* Shadows */
+  --domus-shadow-1: 0 1px 0 rgba(20,36,28,.04), 0 1px 2px rgba(20,36,28,.04);
+  --domus-shadow-2: 0 1px 0 rgba(20,36,28,.06), 0 6px 18px -10px rgba(20,36,28,.12);
+  --domus-shadow-focus: 0 0 0 3px rgba(15,61,46,.10);
+  --domus-shadow-focus-danger: 0 0 0 3px rgba(178,58,42,.12);
+  --domus-shadow-3: 0 1px 0 rgba(20,36,28,.06), 0 24px 60px -28px rgba(20,36,28,.28);
+
+  /* Motion */
+  --domus-duration-fast:    140ms;
+  --domus-duration-base:    220ms;
+  --domus-duration-slow:    360ms;
+  --domus-ease-standard: cubic-bezier(0.2, 0, 0.1, 1);
+  --domus-ease-enter:    cubic-bezier(0, 0, 0.2, 1);
+  --domus-ease-exit:     cubic-bezier(0.4, 0, 1, 1);
+
+  /* Z-index */
+  --domus-z-sticky:  100;
+  --domus-z-overlay: 1000;
+  --domus-z-modal:   1100;
+  --domus-z-toast:   1200;
+}
+
+/* =====================================================================
+   BASE
+   ===================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--domus-font-ui);
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--domus-text);
+  background: var(--domus-surface);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* =====================================================================
+   COMPONENT LAYER
+   ===================================================================== */
+@layer components {
+
+  /* ----- Buttons ----- */
+  .domus-btn {
+    @apply inline-flex items-center gap-2 cursor-pointer border font-sans font-medium text-base rounded-sm;
+    padding: 12px 22px;
+    border-color: transparent;
+    line-height: 1;
+    transition:
+      background-color var(--domus-duration-fast) var(--domus-ease-standard),
+      border-color     var(--domus-duration-fast) var(--domus-ease-standard),
+      color            var(--domus-duration-fast) var(--domus-ease-standard),
+      transform        var(--domus-duration-fast) var(--domus-ease-standard),
+      box-shadow       var(--domus-duration-fast) var(--domus-ease-standard);
+  }
+  .domus-btn:hover {
+    transform: translateY(-1px);
+  }
+  .domus-btn:active {
+    transform: translateY(1px) scale(0.985);
+  }
+  .domus-btn:focus-visible { outline: none; box-shadow: var(--domus-shadow-focus); }
+  .domus-btn:disabled { opacity: 0.45; pointer-events: none; transform: none; }
+
+  .domus-btn--primary   { background: var(--domus-brand); color: var(--domus-text-on-brand); }
+  .domus-btn--primary:hover { background: var(--domus-brand-hover); }
+  .domus-btn--secondary { background: var(--domus-white); color: var(--domus-brand); border-color: var(--domus-brand); }
+  .domus-btn--secondary:hover { background: var(--domus-beige-50); }
+  .domus-btn--tertiary  { background: var(--domus-accent); color: var(--domus-green-900); }
+  .domus-btn--tertiary:hover { background: var(--domus-beige-700); color: var(--domus-ivory); }
+  .domus-btn--ghost     { background: transparent; color: var(--domus-brand); }
+  .domus-btn--ghost:hover { background: var(--domus-beige-50); }
+  .domus-btn--danger    { background: var(--domus-white); color: var(--domus-danger); border-color: var(--domus-danger); }
+  .domus-btn--danger:hover { background: var(--domus-danger); color: var(--domus-ivory); }
+  .domus-btn--sm { padding: 8px 14px; font-size: 12px; border-radius: var(--domus-radius-xs); }
+  .domus-btn--lg { padding: 16px 28px; font-size: 15px; }
+
+  /* ----- Inputs ----- */
+  .domus-input {
+    @apply w-full font-sans text-base;
+    background: var(--domus-white);
+    border: 1px solid var(--domus-border);
+    border-radius: var(--domus-radius-sm);
+    padding: 12px 14px;
+    color: var(--domus-text);
+    transition: border-color var(--domus-duration-fast), box-shadow var(--domus-duration-fast);
+  }
+  .domus-input::placeholder { color: var(--domus-ink-300); }
+  .domus-input:focus {
+    outline: none;
+    border-color: var(--domus-brand);
+    box-shadow: var(--domus-shadow-focus);
+  }
+  .domus-input--error { border-color: var(--domus-danger); }
+  .domus-input--error:focus { box-shadow: var(--domus-shadow-focus-danger); }
+
+  /* ----- Cards ----- */
+  .domus-card {
+    background: var(--domus-white);
+    border: 1px solid var(--domus-border);
+    border-radius: var(--domus-radius-lg);
+    box-shadow: var(--domus-shadow-1);
+  }
+  .domus-card--elevated { box-shadow: var(--domus-shadow-2); }
+  .domus-card--accent   { background: var(--domus-beige-100); border-color: var(--domus-beige-300); }
+  .domus-card--inverse  { background: var(--domus-brand); color: var(--domus-text-on-brand); border-color: transparent; }
+
+  /* Dark KPI card variant — inspired by landing page hero card */
+  .domus-card--dark {
+    background: var(--domus-green-700);
+    border-color: transparent;
+    color: var(--domus-ivory);
+    position: relative;
+    overflow: hidden;
+  }
+  .domus-card--dark::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(120% 80% at 100% 0%, rgba(213,194,161,.13), transparent 55%);
+    pointer-events: none;
+  }
+  .domus-card--dark:hover {
+    box-shadow: var(--domus-shadow-3) !important;
+    border-color: transparent !important;
+  }
+
+  /* ----- List rows ----- */
+  .domus-list-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 8px;
+    margin: 0 -8px;
+    border-bottom: 1px solid var(--domus-border);
+    border-radius: var(--domus-radius-sm);
+    transition:
+      background var(--domus-duration-fast) var(--domus-ease-standard),
+      border-color var(--domus-duration-fast) var(--domus-ease-standard);
+  }
+  .domus-list-row:last-child { border-bottom-color: transparent; }
+  .domus-list-row--interactive { cursor: pointer; }
+  .domus-list-row--interactive:hover {
+    background: var(--domus-beige-50);
+    border-bottom-color: transparent;
+  }
+
+  /* ----- Skeleton shimmer ----- */
+  .domus-skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--domus-ink-100) 25%,
+      rgba(250,247,242,.9) 50%,
+      var(--domus-ink-100) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.4s ease-in-out infinite;
+    border-radius: var(--domus-radius-xs);
+  }
+
+  /* ----- Badges ----- */
+  .domus-badge {
+    @apply inline-flex items-center gap-1.5 font-sans font-medium;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: var(--domus-radius-pill);
+    letter-spacing: 0.02em;
+  }
+  .domus-badge--green  { background: var(--domus-green-50);    color: var(--domus-green-700); }
+  .domus-badge--beige  { background: var(--domus-beige-200);   color: var(--domus-beige-700); }
+  .domus-badge--ok     { background: var(--domus-success-bg);  color: var(--domus-success); }
+  .domus-badge--warn   { background: var(--domus-warning-bg);  color: var(--domus-warning); }
+  .domus-badge--danger { background: var(--domus-danger-bg);   color: var(--domus-danger); }
+  .domus-badge--ink    { background: #EAE7DF;                  color: var(--domus-ink-700); }
+
+  /* ----- Table ----- */
+  .domus-table { @apply w-full; border-collapse: collapse; }
+  .domus-table th,
+  .domus-table td {
+    text-align: left;
+    padding: 14px 22px;
+    border-top: 1px solid var(--domus-border);
+    font-size: 13px;
+    vertical-align: middle;
+  }
+  .domus-table thead th {
+    background: var(--domus-surface);
+    border-top: none;
+    font-family: var(--domus-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--domus-text-muted);
+    font-weight: 500;
+  }
+  .domus-table tbody tr:hover td { background: var(--domus-beige-50); }
+
+  /* ----- Nav items ----- */
+  .domus-nav-item {
+    @apply flex items-center gap-3 cursor-pointer rounded-sm font-sans;
+    padding: 10px 12px;
+    font-size: 13px;
+    color: var(--domus-text-secondary);
+    transition: background var(--domus-duration-fast);
+  }
+  .domus-nav-item:hover { background: var(--domus-beige-50); }
+  .domus-nav-item.active {
+    background: rgba(15,61,46,.07);
+    color: var(--domus-brand);
+    font-weight: 600;
+    box-shadow: inset 2px 0 0 var(--domus-brand);
+  }
+
+  /* ----- Eyebrow ----- */
+  .domus-eyebrow {
+    font-family: var(--domus-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--domus-text-muted);
+  }
+
+  /* ----- Lockup / Logo ----- */
+  .domus-lockup {
+    @apply inline-flex items-center;
+    font-family: var(--domus-font-display);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    color: var(--domus-brand);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .domus-ring {
+    display: inline-block;
+    width: 0.85em;
+    height: 0.85em;
+    margin: 0 0.04em;
+    vertical-align: -0.08em;
+  }
+  .domus-ring svg { width: 100%; height: 100%; display: block; }
+
+  /* ----- Dropzone ----- */
+  .domus-dropzone {
+    border: 1.5px dashed var(--domus-border-strong);
+    border-radius: var(--domus-radius-md);
+    background: var(--domus-surface-sunken);
+    transition:
+      border-color var(--domus-duration-fast) var(--domus-ease-standard),
+      background   var(--domus-duration-fast) var(--domus-ease-standard);
+    cursor: pointer;
+  }
+  .domus-dropzone:hover,
+  .domus-dropzone--active {
+    border-color: var(--domus-brand);
+    background: var(--domus-green-50);
+  }
+}
+
+/* =====================================================================
+   UTILITIES
+   ===================================================================== */
+@keyframes spin      { to { transform: rotate(360deg); } }
+@keyframes pulse     { 0%, 100% { opacity: 0.55; } 50% { opacity: 0.22; } }
+@keyframes fadeIn    { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp   { from { opacity: 0; transform: translateY(14px) scale(0.987); } to { opacity: 1; transform: none; } }
+@keyframes slideLeft { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+@keyframes shimmer   { from { background-position: -200% 0; } to { background-position: 200% 0; } }
+
+/* =====================================================================
+   SCROLLBAR
+   ===================================================================== */
+::-webkit-scrollbar              { width: 5px; height: 5px; }
+::-webkit-scrollbar-track        { background: transparent; }
+::-webkit-scrollbar-thumb        { background: var(--domus-ink-100); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover  { background: var(--domus-ink-200); }
+
+/* =====================================================================
+   MOTION & INTERACTIONS
+   ===================================================================== */
+
+/* Smooth navigation */
+html { scroll-behavior: smooth; }
+
+/* Prevent overscroll bounce which can feel laggy */
+body { overscroll-behavior-y: none; }
+
+/* Subtle card hover — only on interactive cards */
+.domus-card {
+  transition:
+    box-shadow   var(--domus-duration-fast) var(--domus-ease-standard),
+    border-color var(--domus-duration-fast) var(--domus-ease-standard),
+    transform    var(--domus-duration-fast) var(--domus-ease-standard);
+}
+.domus-card--interactive {
+  cursor: pointer;
+}
+.domus-card--interactive:hover {
+  box-shadow:   var(--domus-shadow-2);
+  border-color: var(--domus-ink-200);
+  transform: translateY(-2px);
+}
+
+/* Modal entrance */
+.domus-modal-content {
+  animation: slideUp var(--domus-duration-base) var(--domus-ease-enter);
+  will-change: transform, opacity;
+}
+.domus-modal-backdrop {
+  animation: fadeIn var(--domus-duration-fast) var(--domus-ease-enter);
+  will-change: opacity;
+}
+
+/* =====================================================================
+   SIDEBAR & MOBILE LAYOUT
+   ===================================================================== */
+.domus-sidebar {
+  transition: transform var(--domus-duration-base) var(--domus-ease-standard);
+  will-change: transform;
+}
+
+/* Mobile backdrop */
+.domus-sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 36, 28, 0.38);
+  z-index: 99;
+  backdrop-filter: blur(3px);
+  animation: fadeIn var(--domus-duration-base) var(--domus-ease-enter);
+  cursor: pointer;
+}
+
+/* Mobile top bar (hidden on desktop) */
+.domus-mobile-bar {
+  display: none;
+  position: sticky;
+  top: 0;
+  z-index: 97;
+  height: 52px;
+  padding: 0 16px;
+  align-items: center;
+  gap: 12px;
+  background: rgba(250, 247, 242, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--domus-border);
+}
+
+.domus-hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 4.5px;
+  padding: 8px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  border-radius: var(--domus-radius-xs);
+  flex-shrink: 0;
+  transition: background var(--domus-duration-fast);
+}
+.domus-hamburger:hover { background: var(--domus-ink-100); }
+.domus-hamburger span {
+  display: block;
+  width: 17px;
+  height: 1.5px;
+  background: var(--domus-text);
+  border-radius: 1px;
+}
+
+/* =====================================================================
+   RESPONSIVE BREAKPOINTS
+   ===================================================================== */
+@media (max-width: 768px) {
+  /* Show mobile bar */
+  .domus-mobile-bar { display: flex; }
+
+  /* Sidebar becomes an overlay */
+  .domus-sidebar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    height: 100dvh;
+    transform: translateX(-100%);
+    box-shadow: 12px 0 40px -8px rgba(14, 36, 28, 0.18);
+  }
+  .domus-sidebar.open              { transform: translateX(0); }
+  .domus-sidebar-backdrop.show     { display: block; }
+  .domus-sidebar-close             { display: flex !important; }
+
+  /* Page padding shrinks */
+  .domus-page { padding-left: 16px !important; padding-right: 16px !important; }
+
+  /* Responsive Leads Table card transformation */
+  .domus-table-wrapper table.domus-table {
+    display: block;
+    width: 100%;
+  }
+  .domus-table-wrapper table.domus-table thead {
+    display: none;
+  }
+  .domus-table-wrapper table.domus-table tbody {
+    display: block;
+    width: 100%;
+  }
+  .domus-table-wrapper table.domus-table tr {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--domus-border);
+    gap: 8px;
+    width: 100%;
+  }
+  .domus-table-wrapper table.domus-table tr:hover td {
+    background: transparent !important;
+  }
+  .domus-table-wrapper table.domus-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0 !important;
+    border: none !important;
+    width: 100%;
+    font-size: 13px;
+  }
+  .domus-table-wrapper table.domus-table td::before {
+    content: attr(data-label);
+    font-family: var(--domus-font-mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--domus-text-muted);
+    font-weight: 500;
+  }
+  .domus-table-wrapper table.domus-table td.is-lead {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    border-bottom: 1px solid var(--domus-border) !important;
+    padding-bottom: 10px !important;
+    margin-bottom: 6px;
+  }
+  .domus-table-wrapper table.domus-table td.is-lead::before {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* Allow grids to scroll horizontally instead of breaking layout */
+  main { overflow-x: hidden; }
+}
