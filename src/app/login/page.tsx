@@ -66,28 +66,13 @@ export default function LoginPage() {
             fontFamily: 'var(--domus-font-display)', fontSize: 30, fontWeight: 400,
             color: '#fff', margin: '0 0 14px', lineHeight: 1.22, letterSpacing: '-0.01em',
           }}>
-            Qualifique leads com inteligência.
+            Gestão Imobiliária Inteligente.
           </h1>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', margin: 0, lineHeight: 1.7, maxWidth: 300 }}>
             Análise de crédito automatizada, gestão de visitas e portfólio de imóveis — tudo em uma única plataforma.
           </p>
         </div>
 
-        {/* Stats row — fixo na base */}
-        <div style={{ display: 'flex', gap: 28, paddingTop: 28, borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-          {[
-            ['500+', 'corretores ativos'],
-            ['R$ 2bi+', 'em crédito analisado'],
-            ['98%', 'satisfação'],
-          ].map(([val, label]) => (
-            <div key={label}>
-              <p style={{ fontFamily: 'var(--domus-font-display)', fontSize: 17, fontWeight: 400, color: '#fff', margin: '0 0 2px', letterSpacing: '-0.01em' }}>
-                {val}
-              </p>
-              <p style={{ fontSize: 10, color: 'rgba(255,255,255,0.4)', margin: 0 }}>{label}</p>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* ── Right form panel ──────────────────────────────────────────── */}
