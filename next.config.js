@@ -24,6 +24,11 @@ const nextConfig = {
       ? { exclude: ['error', 'warn'] }
       : false,
   },
+
+  experimental: {
+    // Tree-shake large icon/animation libs — reduces initial JS bundle
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
+  },
 }
 
 module.exports = nextConfig
