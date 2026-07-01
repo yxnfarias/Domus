@@ -18,18 +18,30 @@ CREATE INDEX IF NOT EXISTS idx_notifications_company_date
 
 ALTER TABLE notifications ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "members_select_notifications" ON notifications
-  FOR SELECT USING (
-    company_id IN (
-      SELECT company_id FROM company_users WHERE user_id = auth.uid()
-    )
-  );
+DO $$ BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_policies WHERE policyname = 'members_select_notifications' AND tablename = 'notifications'
+  ) THEN
+    CREATE POLICY "members_select_notifications" ON notifications
+      FOR SELECT USING (
+        company_id IN (
+          SELECT company_id FROM company_users WHERE user_id = auth.uid()
+        )
+      );
+  END IF;
+END $$;
 
-CREATE POLICY "members_update_notifications" ON notifications
-  FOR UPDATE USING (
-    company_id IN (
-      SELECT company_id FROM company_users WHERE user_id = auth.uid()
-    )
-  );
+DO $$ BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_policies WHERE policyname = 'members_update_notifications' AND tablename = 'notifications'
+  ) THEN
+    CREATE POLICY "members_update_notifications" ON notifications
+      FOR UPDATE USING (
+        company_id IN (
+          SELECT company_id FROM company_users WHERE user_id = auth.uid()
+        )
+      );
+  END IF;
+END $$;
 
 ALTER PUBLICATION supabase_realtime ADD TABLE notifications;
